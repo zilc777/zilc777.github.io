@@ -6,21 +6,25 @@
   <style>
     body {
       display:flex;
+      flex-direction:column;
       justify-content:center;
       align-items:center;
       height:100vh;
       background:#f9f9f9;
       font-family: Arial, sans-serif;
     }
+    input, button {
+      padding: 12px;
+      font-size: 16px;
+      margin: 5px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
     button {
-      padding: 15px 30px;
-      font-size: 18px;
-      border: none;
-      border-radius: 10px;
       cursor: pointer;
       background: linear-gradient(135deg, #42a5f5, #1e88e5);
       color: white;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      border: none;
       transition: 0.3s;
     }
     button:hover {
@@ -30,10 +34,24 @@
   </style>
 </head>
 <body>
-  <button id="goBtn">Nhấn để đi tới Yeumoney</button>
+  <h2>Nhập Key để vượt link</h2>
+  <input type="text" id="keyInput" placeholder="Dán key tại đây">
+  <button id="goBtn">Đi tới Yeumoney</button>
 
   <script>
-    // Lấy key từ query string (?c6=...)
+    document.getElementById("goBtn").onclick = () => {
+      const key = document.getElementById("keyInput").value.trim();
+      if (!key) {
+        alert("Bạn chưa nhập key!");
+        return;
+      }
+      const token = "0a8aaa36f7d7ca5008492f664d4afb695acf5dccf0c83c6f75fa989f703f88c3"; // API token Yeumoney
+      const targetUrl = `https://yeumoney.com/QL_api.php?token=${token}&url=https://zilc777.github.io/?c6=${key}`;
+      window.location.href = targetUrl;
+    };
+  </script>
+</body>
+</html>
     const params = new URLSearchParams(window.location.search);
     const key = params.get("c6");
 
