@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Vượt Link Yeumoney</title>
+  <style>
+    body {
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+      background:#f9f9f9;
+      font-family: Arial, sans-serif;
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background: linear-gradient(135deg, #42a5f5, #1e88e5);
+      color: white;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      transition: 0.3s;
+    }
+    button:hover {
+      transform: scale(1.05);
+      background: linear-gradient(135deg, #64b5f6, #1976d2);
+    }
+  </style>
+</head>
+<body>
+  <button id="goBtn">Nhấn để đi tới Yeumoney</button>
+
+  <script>
+    // Lấy key từ query string (?c6=...)
+    const params = new URLSearchParams(window.location.search);
+    const key = params.get("c6");
+
+    if (key) {
+      const token = "0a8aaa36f7d7ca5008492f664d4afb695acf5dccf0c83c6f75fa989f703f88c3"; // API token Yeumoney của bạn
+      const targetUrl = `https://yeumoney.com/QL_api.php?token=${token}&url=https://zilc777.github.io/?c6=${key}`;
+
+      document.getElementById("goBtn").onclick = () => {
+        window.location.href = targetUrl;
+      };
+    } else {
+      document.getElementById("goBtn").onclick = () => {
+        alert("Không tìm thấy key, vui lòng chạy tool để lấy key!");
+      };
+    }
+  </script>
+</body>
+</html>
